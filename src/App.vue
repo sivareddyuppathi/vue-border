@@ -64,7 +64,7 @@ const borderTypes = ref([
         </div>
       </template>
       <template #bottomElement>
-        <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px' }">
+        <div :style="{ height: '50px', paddingLeft: '4px', paddingRight: '4px' }">
           <img :style="{ height: '50px' }"
             src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
             alt="react border wrapper logo" />
