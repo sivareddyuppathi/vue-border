@@ -216,10 +216,6 @@ h3 {
   flex-direction: column;
 }
 
-.border-bottom-element {
-  align-self: flex-end;
-}
-
 .border-wrapper-corner {
   display: flex;
 }
