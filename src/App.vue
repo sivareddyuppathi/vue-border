@@ -101,6 +101,8 @@ const leftEle = ref(true)
       </template>
     </BorderWrapper>
 
+    <div class="separator">Check the component by changing the below values</div>
+
     <div class="container">
       <div class="did-floating-label-content">
         <input class="did-floating-input" type="text" v-model="state.color">
@@ -218,6 +220,9 @@ const leftEle = ref(true)
         <label class="did-floating-label">Left Offset</label>
       </div>
     </div>
+
+    <div class="separator">Check the component code below</div>
+
     <div style="
     display: flex;
     align-items: start;
@@ -293,6 +298,28 @@ const leftEle = ref(true)
 </template>
 
 <style scoped>
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 2.5rem 0px;
+  color: crimson;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 2px solid rgb(80, 22, 34);
+}
+
+.separator:not(:empty)::before {
+  margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: .25em;
+}
 .card {
   text-align: center;
   border-radius: 4px;
