@@ -40,9 +40,9 @@ const borderTypes = ref([
     <BorderWrapper :borderColor="state.color" :borderWidth="state.borderWidth + 'px'"
       :borderRadius="state.borderRadius + 'px'" :innerPadding="state.innerPadding + 'px'" :borderType="state.borderType"
       :topPosition="state.topPosition" :topOffset="state.topOffset + 'px'" :rightPosition="state.rightPosition"
-      :rightOffset="state.rightOffset + 'px'" :bottomElement="undefined" :bottomPosition="state.bottomPosition"
-      :bottomOffset="state.bottomOffset + 'px'" :bottomGap="state.bottomGap + 'px'" :leftElement="undefined"
-      :leftPosition="state.leftPosition" :leftOffset="state.leftOffset + 'px'" :leftGap="state.leftGap">
+      :rightOffset="state.rightOffset + 'px'" :bottomPosition="state.bottomPosition"
+      :bottomOffset="state.bottomOffset + 'px'" :leftPosition="state.leftPosition"
+      :leftOffset="state.leftOffset + 'px'">
       <template #topElement>
         <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px' }">
           <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png"
@@ -64,9 +64,8 @@ const borderTypes = ref([
         </div>
       </template>
       <template #bottomElement>
-        <div :style="{ height: '50px', paddingLeft: '4px', paddingRight: '4px' }">
-          <img :style="{ height: '50px' }"
-            src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
+        <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px', alignSelf: 'flex-end' }">
+          <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png"
             alt="react border wrapper logo" />
         </div>
       </template>
@@ -132,6 +131,62 @@ const borderTypes = ref([
         </select>
         <label class="did-floating-label">Border Type</label>
       </div>
+      <div class="did-floating-label-content">
+        <input class="did-floating-input" type="text" v-model="state.topPosition">
+        <span class="did-floating-label-right-content">
+          %
+        </span>
+        <label class="did-floating-label">Top Position</label>
+      </div>
+      <div class="did-floating-label-content">
+        <input class="did-floating-input" type="text" v-model="state.rightPosition">
+        <span class="did-floating-label-right-content">
+          %
+        </span>
+        <label class="did-floating-label">Right Position</label>
+      </div>
+      <div class="did-floating-label-content">
+        <input class="did-floating-input" type="text" v-model="state.bottomPosition">
+        <span class="did-floating-label-right-content">
+          %
+        </span>
+        <label class="did-floating-label">Bottom Position</label>
+      </div>
+      <div class="did-floating-label-content">
+        <input class="did-floating-input" type="text" v-model="state.leftPosition">
+        <span class="did-floating-label-right-content">
+          %
+        </span>
+        <label class="did-floating-label">Left Position</label>
+      </div>
+      <div class="did-floating-label-content">
+        <input class="did-floating-input" type="text" v-model="state.topOffset">
+        <span class="did-floating-label-right-content">
+          %
+        </span>
+        <label class="did-floating-label">Top Offset</label>
+      </div>
+      <div class="did-floating-label-content">
+        <input class="did-floating-input" type="text" v-model="state.rightOffset">
+        <span class="did-floating-label-right-content">
+          %
+        </span>
+        <label class="did-floating-label">Right Offset</label>
+      </div>
+      <div class="did-floating-label-content">
+        <input class="did-floating-input" type="text" v-model="state.bottomOffset">
+        <span class="did-floating-label-right-content">
+          %
+        </span>
+        <label class="did-floating-label">Bottom Offset</label>
+      </div>
+      <div class="did-floating-label-content">
+        <input class="did-floating-input" type="text" v-model="state.leftOffset">
+        <span class="did-floating-label-right-content">
+          %
+        </span>
+        <label class="did-floating-label">Left Offset</label>
+      </div>
     </div>
   </div>
 </template>
@@ -161,6 +216,7 @@ const borderTypes = ref([
 
 .container {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   padding: 20px;
   font-family: 'Inter', sans-serif;
