@@ -137,35 +137,39 @@ const leftOffset: valueType = positions.left ? props.leftOffset : undefined;
 
     <!-- Bottom Border -->
     <div class="border-horizontal-parent">
-      <div :style="{
-        borderBottomLeftRadius: props.borderRadius,
-        borderBottom: props.borderType,
-        borderLeft: props.borderType,
-        borderBottomWidth: props.borderWidth,
-        borderLeftWidth: props.borderWidth,
-        borderBottomColor: props.borderColor,
-        borderLeftColor: props.borderColor,
-        minHeight: props.borderRadius,
-        minWidth: props.borderRadius,
-        marginBottom: bottomOffset,
-        marginLeft: leftOffset,
-      }" />
-      <div :style="{
-        borderBottom: props.borderType,
-        borderBottomWidth: props.borderWidth,
-        borderBottomColor: props.borderColor,
-        width: bottomPosition.primary,
-        marginBottom: bottomOffset,
-      }" />
+      <div class="bottom-left-border-corner" />
+      <div class="bottom-left-border" />
       <slot name="bottomElement" />
-      <div class="bottom-border" />
       <div class="bottom-right-border" />
+      <div class="bottom-right-border-corner" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.bottom-border {
+.bottom-left-border-corner {
+  border-bottom-left-radius: v-bind(props.borderRadius);
+  border-bottom: v-bind(props.borderType);
+  border-left: v-bind(props.borderType);
+  border-bottom-width: v-bind(props.borderWidth);
+  border-left-width: v-bind(props.borderWidth);
+  border-bottom-color: v-bind(props.borderColor);
+  border-left-color: v-bind(props.borderColor);
+  min-height: v-bind(props.borderRadius);
+  min-width: v-bind(props.borderRadius);
+  margin-bottom: v-bind(bottomOffset);
+  margin-left: v-bind(leftOffset)
+}
+
+.bottom-left-border {
+  border-bottom: v-bind(props.borderType);
+  border-bottom-width: v-bind(props.borderWidth);
+  border-bottom-color: v-bind(props.borderColor);
+  width: v-bind(bottomPosition.primary);
+  margin-bottom: v-bind(bottomOffset);
+}
+
+.bottom-border-border {
   border-bottom: v-bind(props.borderType);
   border-bottom-width: v-bind(props.borderWidth);
   border-bottom-color: v-bind(props.borderColor);
@@ -173,7 +177,7 @@ const leftOffset: valueType = positions.left ? props.leftOffset : undefined;
   margin-bottom: v-bind(bottomOffset);
 }
 
-.bottom-right-border {
+.bottom-right-border-corner {
   border-bottom-right-radius: v-bind(props.borderRadius);
   border-bottom: v-bind(props.borderType);
   border-right: v-bind(props.borderType);
