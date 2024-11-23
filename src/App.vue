@@ -34,6 +34,10 @@ const borderTypes = ref([
   { id: 'ridge', name: 'Ridge' },
   { id: 'solid', name: 'Solid' }
 ])
+const topEle = ref(true)
+const rightEle = ref(true)
+const bottomEle = ref(true)
+const leftEle = ref(true)
 </script>
 <template>
   <div class="card" :style="{ '--elevation': '2' }">
@@ -43,30 +47,28 @@ const borderTypes = ref([
       :rightOffset="state.rightOffset + 'px'" :bottomPosition="state.bottomPosition"
       :bottomOffset="state.bottomOffset + 'px'" :leftPosition="state.leftPosition"
       :leftOffset="state.leftOffset + 'px'">
-      <template #topElement>
+      <template v-if="topEle" #topElement>
         <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px' }">
-          <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png"
-            alt="react border wrapper logo" />
+          <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png" alt="vue border wrapper logo" />
         </div>
       </template>
-      <template #rightElement>
+      <template v-if="rightEle" #rightElement>
         <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-end' }">
           <img :style="{ height: '50px' }"
             src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
-            alt="react border wrapper logo" />
+            alt="vue border wrapper logo" />
         </div>
       </template>
-      <template #leftElement>
+      <template v-if="leftEle" #leftElement>
         <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-start', }">
           <img :style="{ height: '50px' }"
             src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
-            alt="react border wrapper logo" />
+            alt="vue border wrapper logo" />
         </div>
       </template>
-      <template #bottomElement>
+      <template v-if="bottomEle" #bottomElement>
         <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px', alignSelf: 'flex-end' }">
-          <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png"
-            alt="react border wrapper logo" />
+          <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png" alt="vue border wrapper logo" />
         </div>
       </template>
       <template #default>
@@ -132,6 +134,13 @@ const borderTypes = ref([
         <label class="did-floating-label">Border Type</label>
       </div>
       <div class="did-floating-label-content">
+        <select class="did-floating-select" v-model="topEle">
+          <option :value="true">True</option>
+          <option :value="false">False</option>
+        </select>
+        <label class="did-floating-label">Top Element</label>
+      </div>
+      <div class="did-floating-label-content">
         <input class="did-floating-input" type="text" v-model="state.topPosition">
         <span class="did-floating-label-right-content">
           %
@@ -187,6 +196,76 @@ const borderTypes = ref([
         </span>
         <label class="did-floating-label">Left Offset</label>
       </div>
+    </div>
+    <div style="
+    display: flex;
+    align-items: start;
+    justify-content: center;
+">
+      <code style="
+    text-align: start;
+">
+    {{ `
+    <BorderWrapper`}}<br />
+    &nbsp;{{ `borderColor="${state.color}"` }}<br />
+    &nbsp;{{ `borderWidth="${state.borderWidth}px"` }}<br />
+    &nbsp;{{ `borderRadius="${state.borderRadius}"px` }}<br />
+    &nbsp;{{ `innerPadding="${state.innerPadding}"px` }}<br />
+    &nbsp;{{ `borderType="${state.borderType}"` }}<br />
+    &nbsp;{{ `topPosition="${state.topPosition}"` }}<br />
+    &nbsp;{{ `topOffset="${state.topOffset}"px` }}<br />
+    &nbsp;{{ `rightPosition="${state.rightPosition}"` }}<br />
+    &nbsp;{{ `rightOffset="${state.rightOffset}"px` }}<br />
+    &nbsp;{{ `bottomPosition="${state.bottomPosition}"` }}<br />
+    &nbsp;{{ `bottomOffset="${state.bottomOffset}"px` }}<br />
+    &nbsp;{{ `leftPosition="${state.leftPosition}"` }}<br />
+    &nbsp;{{ `leftOffset="${state.leftOffset}px"` }}<br />
+    {{ `>` }}<br />
+    <template v-if="topEle">
+    <pre>
+      {{ `<template #topElement>
+          <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px' }">
+            <img :style="{ width: '200px' }" 
+              src="./assets/react_border_wrapper_logo.png"
+              alt="vue border wrapper logo" />
+          </div>
+      </template>`}}
+    </pre>
+    </template>
+    <br />
+    <template v-if="rightEle">
+      <pre>
+        {{ `<template #rightElement>
+          <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-end' }">
+            <img :style="{ height: '50px' }" 
+              src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
+              alt="vue border wrapper logo" />
+          </div>
+      </template>`}}
+    </pre>
+    </template>
+    <template v-if="bottomEle">
+      <pre>
+        {{ `<template #bottomElement>
+        <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px', alignSelf: 'flex-end' }">
+          <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png" alt="vue border wrapper logo" />
+        </div>
+      </template>`}}
+    </pre>
+    </template>
+    <template v-if="leftEle">
+      <pre>
+        {{ `<template #leftElement>
+        <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-start', }">
+          <img :style="{ height: '50px' }"
+            src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
+            alt="vue border wrapper logo" />
+        </div>
+      </template>`}}
+    </pre>
+    </template>
+    {{ `</BorderWrapper>` }}
+  </code>
     </div>
   </div>
 </template>
