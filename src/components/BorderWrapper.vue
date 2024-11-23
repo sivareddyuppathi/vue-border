@@ -1,3 +1,46 @@
+<script setup lang="ts">
+import { useSlots } from 'vue'
+import type { Props, Positions, PositionPercent, valueType } from './tpyes';
+
+const props = withDefaults(defineProps<Props>(), {
+  borderWidth: '4px',
+  innerPadding: '20px',
+  borderRadius: '15px',
+  borderColor: '#000000',
+  borderType: 'solid',
+});
+const slots = useSlots()
+
+const defaultPosition = { primary: '50%', secondary: '50%' };
+
+function determineLocations(): Positions {
+  const top: boolean = slots.topElement !== undefined;
+  const right: boolean = slots.rightElement !== undefined;
+  const bottom: boolean = slots.bottomElement !== undefined;
+  const left: boolean = slots.leftElement !== undefined;
+  return { top, right, bottom, left }
+}
+
+const positions = determineLocations();
+
+function parsePercentage(float: number = 0.5): PositionPercent {
+  if (float > 1) float = 1;
+  else if (float < 0) float = 0;
+  return { primary: `${Math.round(float * 100)}%`, secondary: `${Math.round((1 - float) * 100)}%` };
+}
+
+const topPosition: PositionPercent = positions.top ? parsePercentage(props.topPosition) : defaultPosition;
+const rightPosition: PositionPercent = positions.right ? parsePercentage(props.rightPosition) : defaultPosition;
+const bottomPosition: PositionPercent = positions.bottom ? parsePercentage(props.bottomPosition) : defaultPosition;
+const leftPosition: PositionPercent = positions.left ? parsePercentage(props.leftPosition) : defaultPosition;
+
+const topOffset: valueType = positions.top ? props.topOffset : undefined;
+const rightOffset: valueType = positions.right ? props.rightOffset : undefined;
+const bottomOffset: valueType = positions.bottom ? props.bottomOffset : undefined;
+const leftOffset: valueType = positions.left ? props.leftOffset : undefined;
+
+</script>
+
 <template>
   <div class="border-container" :style="props.style">
     <!-- Top Border -->
@@ -115,74 +158,36 @@
         marginBottom: bottomOffset,
       }" />
       <slot name="bottomElement" />
-      <div :style="{
-        borderBottom: props.borderType,
-        borderBottomWidth: props.borderWidth,
-        borderBottomColor: props.borderColor,
-        width: bottomPosition.secondary,
-        marginBottom: bottomOffset,
-      }" />
-      <div :style="{
-        borderBottomRightRadius: props.borderRadius,
-        borderBottom: props.borderType,
-        borderRight: props.borderType,
-        borderBottomWidth: props.borderWidth,
-        borderRightWidth: props.borderWidth,
-        borderBottomColor: props.borderColor,
-        borderRightColor: props.borderColor,
-        marginBottom: bottomOffset,
-        minHeight: props.borderRadius,
-        minWidth: props.borderRadius,
-        marginRight: rightOffset,
-      }" />
+      <div class="bottom-border" />
+      <div class="bottom-right-border" />
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { useSlots } from 'vue'
-import type { Props, Positions, PositionPercent, valueType } from './tpyes';
-
-const props = withDefaults(defineProps<Props>(), {
-  borderWidth: '4px',
-  innerPadding: '20px',
-  borderRadius: '15px',
-  borderColor: '#000000',
-  borderType: 'solid',
-});
-const slots = useSlots()
-
-const defaultPosition = { primary: '50%', secondary: '50%' };
-
-function determineLocations(): Positions {
-  const top: boolean = slots.topElement !== undefined;
-  const right: boolean = slots.rightElement !== undefined;
-  const bottom: boolean = slots.bottomElement !== undefined;
-  const left: boolean = slots.leftElement !== undefined;
-  return { top, right, bottom, left }
-}
-
-const positions = determineLocations();
-
-function parsePercentage(float: number = 0.5): PositionPercent {
-  if (float > 1) float = 1;
-  else if (float < 0) float = 0;
-  return { primary: `${Math.round(float * 100)}%`, secondary: `${Math.round((1 - float) * 100)}%` };
-}
-
-const topPosition: PositionPercent = positions.top ? parsePercentage(props.topPosition) : defaultPosition;
-const rightPosition: PositionPercent = positions.right ? parsePercentage(props.rightPosition) : defaultPosition;
-const bottomPosition: PositionPercent = positions.bottom ? parsePercentage(props.bottomPosition) : defaultPosition;
-const leftPosition: PositionPercent = positions.left ? parsePercentage(props.leftPosition) : defaultPosition;
-
-const topOffset: valueType = positions.top ? props.topOffset : undefined;
-const rightOffset: valueType = positions.right ? props.rightOffset : undefined;
-const bottomOffset: valueType = positions.bottom ? props.bottomOffset : undefined;
-const leftOffset: valueType = positions.left ? props.leftOffset : undefined;
-
-</script>
-
 <style scoped>
+.bottom-border {
+  border-bottom: v-bind(props.borderType);
+  border-bottom-width: v-bind(props.borderWidth);
+  border-bottom-color: v-bind(props.borderColor);
+  width: v-bind(bottomPosition.secondary);
+  margin-bottom: v-bind(bottomOffset);
+}
+
+.bottom-right-border {
+  border-bottom-right-radius: v-bind(props.borderRadius);
+  border-bottom: v-bind(props.borderType);
+  border-right: v-bind(props.borderType);
+  border-bottom-width: v-bind(props.borderWidth);
+  border-right-width: v-bind(props.borderWidth);
+  border-bottom-color: v-bind(props.borderColor);
+  border-right-color: v-bind(props.borderColor);
+  margin-bottom: v-bind(bottomOffset);
+  min-height: v-bind(props.borderRadius);
+  min-width: v-bind(props.borderRadius);
+  margin-right: v-bind(rightOffset);
+}
+
+
 h1 {
   font-size: 42pt;
   margin-top: 0;
