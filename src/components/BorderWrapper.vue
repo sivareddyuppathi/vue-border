@@ -169,7 +169,7 @@ const leftOffset: valueType = positions.left ? props.leftOffset : undefined;
   margin-bottom: v-bind(bottomOffset);
 }
 
-.bottom-border-border {
+.bottom-right-border {
   border-bottom: v-bind(props.borderType);
   border-bottom-width: v-bind(props.borderWidth);
   border-bottom-color: v-bind(props.borderColor);
