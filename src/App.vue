@@ -162,28 +162,28 @@ const borderTypes = ref([
       <div class="did-floating-label-content">
         <input class="did-floating-input" type="text" v-model="state.topOffset">
         <span class="did-floating-label-right-content">
-          %
+          px
         </span>
         <label class="did-floating-label">Top Offset</label>
       </div>
       <div class="did-floating-label-content">
         <input class="did-floating-input" type="text" v-model="state.rightOffset">
         <span class="did-floating-label-right-content">
-          %
+          px
         </span>
         <label class="did-floating-label">Right Offset</label>
       </div>
       <div class="did-floating-label-content">
         <input class="did-floating-input" type="text" v-model="state.bottomOffset">
         <span class="did-floating-label-right-content">
-          %
+          px
         </span>
         <label class="did-floating-label">Bottom Offset</label>
       </div>
       <div class="did-floating-label-content">
         <input class="did-floating-input" type="text" v-model="state.leftOffset">
         <span class="did-floating-label-right-content">
-          %
+          px
         </span>
         <label class="did-floating-label">Left Offset</label>
       </div>
