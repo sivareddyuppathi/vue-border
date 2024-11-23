@@ -141,6 +141,27 @@ const leftEle = ref(true)
         <label class="did-floating-label">Top Element</label>
       </div>
       <div class="did-floating-label-content">
+        <select class="did-floating-select" v-model="rightEle">
+          <option :value="true">True</option>
+          <option :value="false">False</option>
+        </select>
+        <label class="did-floating-label">Right Element</label>
+      </div>
+      <div class="did-floating-label-content">
+        <select class="did-floating-select" v-model="bottomEle">
+          <option :value="true">True</option>
+          <option :value="false">False</option>
+        </select>
+        <label class="did-floating-label">Bottom Element</label>
+      </div>
+      <div class="did-floating-label-content">
+        <select class="did-floating-select" v-model="leftEle">
+          <option :value="true">True</option>
+          <option :value="false">False</option>
+        </select>
+        <label class="did-floating-label">Left Element</label>
+      </div>
+      <div class="did-floating-label-content">
         <input class="did-floating-input" type="text" v-model="state.topPosition">
         <span class="did-floating-label-right-content">
           %
@@ -248,7 +269,8 @@ const leftEle = ref(true)
       <pre>
         {{ `<template #bottomElement>
         <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px', alignSelf: 'flex-end' }">
-          <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png" alt="vue border wrapper logo" />
+          <img :style="{ width: '200px' }" 
+            src="./assets/react_border_wrapper_logo.png" alt="vue border wrapper logo" />
         </div>
       </template>`}}
     </pre>
