@@ -30,10 +30,10 @@ function parsePercentage(float: number = 0.5): PositionPercent {
   return { primary: `${Math.round(float * 100)}%`, secondary: `${Math.round((1 - float) * 100)}%` };
 }
 
-const topPosition: PositionPercent = positions.top ? parsePercentage(props.topPosition) : defaultPosition;
-const rightPosition: PositionPercent = positions.right ? parsePercentage(props.rightPosition) : defaultPosition;
-const bottomPosition: PositionPercent = positions.bottom ? parsePercentage(props.bottomPosition) : defaultPosition;
-const leftPosition: PositionPercent = positions.left ? parsePercentage(props.leftPosition) : defaultPosition;
+const topPosition: ComputedRef<PositionPercent> = computed<PositionPercent>(() => positions.top ? parsePercentage(props.topPosition) : defaultPosition);
+const rightPosition: ComputedRef<PositionPercent> = computed<PositionPercent>(() => positions.right ? parsePercentage(props.rightPosition) : defaultPosition);
+const bottomPosition: ComputedRef<PositionPercent> = computed<PositionPercent>(() => positions.bottom ? parsePercentage(props.bottomPosition) : defaultPosition);
+const leftPosition: ComputedRef<PositionPercent> = computed<PositionPercent>(() => positions.left ? parsePercentage(props.leftPosition) : defaultPosition);
 
 const topOffset: ComputedRef<valueType> = computed<valueType>(() => positions.top ? props.topOffset : undefined);
 const rightOffset: ComputedRef<valueType> = computed<valueType>(() => positions.right ? props.rightOffset : undefined);
