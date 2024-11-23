@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useSlots } from 'vue'
+import { useSlots, computed } from 'vue'
+import type { ComputedRef } from 'vue'
 import type { Props, Positions, PositionPercent, valueType } from './tpyes';
 
 const props = withDefaults(defineProps<Props>(), {
@@ -34,10 +35,10 @@ const rightPosition: PositionPercent = positions.right ? parsePercentage(props.r
 const bottomPosition: PositionPercent = positions.bottom ? parsePercentage(props.bottomPosition) : defaultPosition;
 const leftPosition: PositionPercent = positions.left ? parsePercentage(props.leftPosition) : defaultPosition;
 
-const topOffset: valueType = positions.top ? props.topOffset : undefined;
-const rightOffset: valueType = positions.right ? props.rightOffset : undefined;
-const bottomOffset: valueType = positions.bottom ? props.bottomOffset : undefined;
-const leftOffset: valueType = positions.left ? props.leftOffset : undefined;
+const topOffset: ComputedRef<valueType> = computed<valueType>(() => positions.top ? props.topOffset : undefined);
+const rightOffset: ComputedRef<valueType> = computed<valueType>(() => positions.right ? props.rightOffset : undefined);
+const bottomOffset: ComputedRef<valueType> = computed<valueType>(() => positions.bottom ? props.bottomOffset : undefined);
+const leftOffset: ComputedRef<valueType> = computed<valueType>(() => positions.left ? props.leftOffset : undefined);
 
 </script>
 
@@ -137,59 +138,53 @@ const leftOffset: valueType = positions.left ? props.leftOffset : undefined;
 
     <!-- Bottom Border -->
     <div class="border-horizontal-parent">
-      <div class="bottom-left-border-corner" />
-      <div class="bottom-left-border" />
+      <div :style="{
+        borderBottomLeftRadius: props.borderRadius,
+        borderBottom: props.borderType,
+        borderLeft: props.borderType,
+        borderBottomWidth: props.borderWidth,
+        borderLeftWidth: props.borderWidth,
+        borderBottomColor: props.borderColor,
+        borderLeftColor: props.borderColor,
+        minHeight: props.borderRadius,
+        minWidth: props.borderRadius,
+        marginBottom: bottomOffset,
+        marginLeft: leftOffset,
+      }" />
+      <div :style="{
+        borderBottom: props.borderType,
+        borderBottomWidth: props.borderWidth,
+        borderBottomColor: props.borderColor,
+        width: bottomPosition.primary,
+        marginBottom: bottomOffset,
+      }" />
       <slot name="bottomElement" />
-      <div class="bottom-right-border" />
-      <div class="bottom-right-border-corner" />
+      <div :style="{
+        borderBottom: props.borderType,
+        borderBottomWidth: props.borderWidth,
+        borderBottomColor: props.borderColor,
+        width: bottomPosition.secondary,
+        marginBottom: bottomOffset,
+      }" />
+      <div :style="{
+        borderBottomRightRadius: props.borderRadius,
+        borderBottom: props.borderType,
+        borderRight: props.borderType,
+        borderBottomWidth: props.borderWidth,
+        borderRightWidth: props.borderWidth,
+        borderBottomColor: props.borderColor,
+        borderRightColor: props.borderColor,
+        marginBottom: bottomOffset,
+        minHeight: props.borderRadius,
+        minWidth: props.borderRadius,
+        marginRight: rightOffset,
+      }" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.bottom-left-border-corner {
-  border-bottom-left-radius: v-bind(props.borderRadius);
-  border-bottom: v-bind(props.borderType);
-  border-left: v-bind(props.borderType);
-  border-bottom-width: v-bind(props.borderWidth);
-  border-left-width: v-bind(props.borderWidth);
-  border-bottom-color: v-bind(props.borderColor);
-  border-left-color: v-bind(props.borderColor);
-  min-height: v-bind(props.borderRadius);
-  min-width: v-bind(props.borderRadius);
-  margin-bottom: v-bind(bottomOffset);
-  margin-left: v-bind(leftOffset)
-}
-
-.bottom-left-border {
-  border-bottom: v-bind(props.borderType);
-  border-bottom-width: v-bind(props.borderWidth);
-  border-bottom-color: v-bind(props.borderColor);
-  width: v-bind(bottomPosition.primary);
-  margin-bottom: v-bind(bottomOffset);
-}
-
-.bottom-right-border {
-  border-bottom: v-bind(props.borderType);
-  border-bottom-width: v-bind(props.borderWidth);
-  border-bottom-color: v-bind(props.borderColor);
-  width: v-bind(bottomPosition.secondary);
-  margin-bottom: v-bind(bottomOffset);
-}
-
-.bottom-right-border-corner {
-  border-bottom-right-radius: v-bind(props.borderRadius);
-  border-bottom: v-bind(props.borderType);
-  border-right: v-bind(props.borderType);
-  border-bottom-width: v-bind(props.borderWidth);
-  border-right-width: v-bind(props.borderWidth);
-  border-bottom-color: v-bind(props.borderColor);
-  border-right-color: v-bind(props.borderColor);
-  margin-bottom: v-bind(bottomOffset);
-  min-height: v-bind(props.borderRadius);
-  min-width: v-bind(props.borderRadius);
-  margin-right: v-bind(rightOffset);
-}
+.bottom-right-border {}
 
 
 h1 {
