@@ -47,7 +47,7 @@ const leftEle = ref(true)
   <div class="">
     <div class="header-wrapper">
       <div>
-        <img :style="{ width: '200px' }" src="./assets/vue_wrp_6.PNG" alt="vue border wrapper logo" />
+        <img :style="{ width: '200px' }" src="./assets/border_wraper_logo.png" alt="vue border wrapper logo" />
       </div>
       <div class="header-right">
         <a class="submit-bug" href="https://github.com/sivareddyuppathi/vue-border" target="_blank">
@@ -67,7 +67,7 @@ const leftEle = ref(true)
         :leftPosition="state.leftPosition" :leftOffset="state.leftOffset + 'px'">
         <template v-if="topEle" #topElement>
           <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px' }">
-            <img :style="{ width: '200px' }" src="./assets/vue_wrp_6.PNG" alt="vue border wrapper logo" />
+            <img :style="{ width: '200px' }" src="./assets/border_wraper_logo.png" alt="vue border wrapper logo" />
           </div>
         </template>
         <template v-if="rightEle" #rightElement>
@@ -86,7 +86,7 @@ const leftEle = ref(true)
         </template>
         <template v-if="bottomEle" #bottomElement>
           <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px', alignSelf: 'flex-end' }">
-            <img :style="{ width: '200px' }" src="./assets/vue_wrp_6.PNG" alt="vue border wrapper logo" />
+            <img :style="{ width: '200px' }" src="./assets/border_wraper_logo.png" alt="vue border wrapper logo" />
           </div>
         </template>
         <template #default>
