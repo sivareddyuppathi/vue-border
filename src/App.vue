@@ -73,14 +73,14 @@ const leftEle = ref(true)
         <template v-if="rightEle" #rightElement>
           <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-end' }">
             <img :style="{ height: '50px' }"
-              src="./assets/react_border_wrapper_icon.png"
+              src="./assets/border_wraper_icon.png"
               alt="vue border wrapper logo" />
           </div>
         </template>
         <template v-if="leftEle" #leftElement>
           <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-start', }">
             <img :style="{ height: '50px' }"
-              src="./assets/react_border_wrapper_icon.png"
+              src="./assets/border_wraper_icon.png"
               alt="vue border wrapper logo" />
           </div>
         </template>
@@ -261,7 +261,7 @@ const leftEle = ref(true)
             paddingRight: '4px' }"
           >
             <img :style="{ width: '200px' }" 
-              src="./assets/react_border_wrapper_logo.png"
+              src="./assets/border_wraper_logo.png"
               alt="vue border wrapper logo" />
           </div>
       </template>`}}
@@ -277,7 +277,7 @@ const leftEle = ref(true)
             alignSelf: 'flex-end' }"
           >
             <img :style="{ height: '50px' }" 
-              src="./assets/react_border_wrapper_icon.png"
+              src="./assets/border_wraper_icon.png"
               alt="vue border wrapper logo" />
           </div>
       </template>`}}
@@ -292,7 +292,7 @@ const leftEle = ref(true)
           alignSelf: 'flex-end' }"
         >
           <img :style="{ width: '200px' }" 
-            src="./assets/react_border_wrapper_logo.png" 
+            src="./assets/border_wraper_logo.png" 
             alt="vue border wrapper logo" />
         </div>
       </template>`}}
@@ -307,7 +307,7 @@ const leftEle = ref(true)
           alignSelf: 'flex-start', }"
         >
           <img :style="{ height: '50px' }"
-            src="./assets/react_border_wrapper_icon.png"
+            src="./assets/border_wraper_icon.png"
             alt="vue border wrapper logo" />
         </div>
       </template>`}}
