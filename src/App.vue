@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import BorderWrapper from './components/BorderWrapper.vue'
+import { SmallContent, MediumContent, LargeContent } from '../example/content/index';
+
 const state = ref({
   topPosition: 0.05,
   rightPosition: 0.1,
@@ -10,17 +12,11 @@ const state = ref({
   rightOffset: 22,
   bottomOffset: 22,
   leftOffset: 22,
-  bottomGap: 4,
-  leftGap: 4,
-  showLeft: false,
-  showRight: true,
-  showBottom: false,
   color: "#00bcf1",
   borderWidth: 5,
   innerPadding: 30,
   borderRadius: 15,
   borderType: "solid",
-  content: "medium"
 });
 const borderTypes = ref([
   { id: 'dashed', name: 'Dashed' },
@@ -34,201 +30,210 @@ const borderTypes = ref([
   { id: 'ridge', name: 'Ridge' },
   { id: 'solid', name: 'Solid' }
 ])
+const contentTypes = ref([
+  { id: 'small', name: 'Small' },
+  { id: 'medium', name: 'Medium' },
+  { id: 'large', name: 'Large' },
+])
+
+const contentType = ref('medium')
 const topEle = ref(true)
 const rightEle = ref(true)
 const bottomEle = ref(true)
 const leftEle = ref(true)
+
 </script>
 <template>
-  <div class="card" :style="{ '--elevation': '2' }">
-    <BorderWrapper :borderColor="state.color" :borderWidth="state.borderWidth + 'px'"
-      :borderRadius="state.borderRadius + 'px'" :innerPadding="state.innerPadding + 'px'" :borderType="state.borderType"
-      :topPosition="state.topPosition" :topOffset="state.topOffset + 'px'" :rightPosition="state.rightPosition"
-      :rightOffset="state.rightOffset + 'px'" :bottomPosition="state.bottomPosition"
-      :bottomOffset="state.bottomOffset + 'px'" :leftPosition="state.leftPosition"
-      :leftOffset="state.leftOffset + 'px'">
-      <template v-if="topEle" #topElement>
-        <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px' }">
-          <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png" alt="vue border wrapper logo" />
-        </div>
-      </template>
-      <template v-if="rightEle" #rightElement>
-        <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-end' }">
-          <img :style="{ height: '50px' }"
-            src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
-            alt="vue border wrapper logo" />
-        </div>
-      </template>
-      <template v-if="leftEle" #leftElement>
-        <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-start', }">
-          <img :style="{ height: '50px' }"
-            src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
-            alt="vue border wrapper logo" />
-        </div>
-      </template>
-      <template v-if="bottomEle" #bottomElement>
-        <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px', alignSelf: 'flex-end' }">
-          <img :style="{ width: '200px' }" src="./assets/react_border_wrapper_logo.png" alt="vue border wrapper logo" />
-        </div>
-      </template>
-      <template #default>
-        <article :style="{ textAlign: 'left', width: '600px' }">
-          <h1>Title</h1>
-          <h2>Header</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque bibendum dapibus porta. Donec non elit
-            id mauris imperdiet gravida ut eu tortor. Aenean aliquam facilisis ipsum, id fringilla magna commodo
-            sed. Donec vel quam scelerisque purus consequat mollis eu cursus ante. Aenean eros ipsum, sollicitudin
-            nec neque sed, venenatis finibus erat. Mauris et ante vel eros venenatis feugiat eu vitae magna.
-            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus cursus
-            orci in dignissim efficitur. Nunc volutpat orci sit amet bibendum dapibus.
-          </p>
-          <h3>Sub-Heading</h3>
-          <p>
-            Morbi feugiat neque ut ligula euismod viverra. Pellentesque ante massa, ultrices a vehicula vel,
-            suscipit quis tellus. Praesent placerat mollis magna, ac vehicula risus placerat ut. Donec
-            porttitor
-            nisl vel facilisis rhoncus. Sed a consectetur nisi. Aliquam erat volutpat. Nam sed ligula dolor.
-            Proin
-            vel enim consectetur, interdum libero sed, vulputate est. Maecenas placerat mi massa, at congue
-            erat
-            convallis a. Suspendisse ut vestibulum lorem. Sed id molestie augue, ac commodo sem. Mauris
-            viverra
-            sem
-            sed porta pharetra.
-          </p>
-        </article>
-      </template>
-    </BorderWrapper>
-
-    <div class="separator">Check the component by changing the below values</div>
-
-    <div class="container">
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.color">
-        <label class="did-floating-label">Color</label>
+  <div class="">
+    <div class="header-wrapper">
+      <div>
+        <img :style="{ width: '200px' }" src="./assets/vue_wrp_6.PNG" alt="vue border wrapper logo" />
       </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.borderWidth">
-        <span class="did-floating-label-right-content">
-          px
-        </span>
-        <label class="did-floating-label">Border Width</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.innerPadding">
-        <span class="did-floating-label-right-content">
-          px
-        </span>
-        <label class="did-floating-label">Inner Padding</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.borderRadius">
-        <span class="did-floating-label-right-content">
-          px
-        </span>
-        <label class="did-floating-label">Border Radius</label>
-      </div>
-      <div class="did-floating-label-content">
-        <select class="did-floating-select" v-model="state.borderType">
-          <option v-for="(type) in borderTypes" :key="type.id" :value="type.id">{{ type.name }}</option>
-        </select>
-        <label class="did-floating-label">Border Type</label>
-      </div>
-      <div class="did-floating-label-content">
-        <select class="did-floating-select" v-model="topEle">
-          <option :value="true">True</option>
-          <option :value="false">False</option>
-        </select>
-        <label class="did-floating-label">Top Element</label>
-      </div>
-      <div class="did-floating-label-content">
-        <select class="did-floating-select" v-model="rightEle">
-          <option :value="true">True</option>
-          <option :value="false">False</option>
-        </select>
-        <label class="did-floating-label">Right Element</label>
-      </div>
-      <div class="did-floating-label-content">
-        <select class="did-floating-select" v-model="bottomEle">
-          <option :value="true">True</option>
-          <option :value="false">False</option>
-        </select>
-        <label class="did-floating-label">Bottom Element</label>
-      </div>
-      <div class="did-floating-label-content">
-        <select class="did-floating-select" v-model="leftEle">
-          <option :value="true">True</option>
-          <option :value="false">False</option>
-        </select>
-        <label class="did-floating-label">Left Element</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.topPosition">
-        <span class="did-floating-label-right-content">
-          %
-        </span>
-        <label class="did-floating-label">Top Position</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.rightPosition">
-        <span class="did-floating-label-right-content">
-          %
-        </span>
-        <label class="did-floating-label">Right Position</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.bottomPosition">
-        <span class="did-floating-label-right-content">
-          %
-        </span>
-        <label class="did-floating-label">Bottom Position</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.leftPosition">
-        <span class="did-floating-label-right-content">
-          %
-        </span>
-        <label class="did-floating-label">Left Position</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.topOffset">
-        <span class="did-floating-label-right-content">
-          px
-        </span>
-        <label class="did-floating-label">Top Offset</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.rightOffset">
-        <span class="did-floating-label-right-content">
-          px
-        </span>
-        <label class="did-floating-label">Right Offset</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.bottomOffset">
-        <span class="did-floating-label-right-content">
-          px
-        </span>
-        <label class="did-floating-label">Bottom Offset</label>
-      </div>
-      <div class="did-floating-label-content">
-        <input class="did-floating-input" type="text" v-model="state.leftOffset">
-        <span class="did-floating-label-right-content">
-          px
-        </span>
-        <label class="did-floating-label">Left Offset</label>
+      <div class="header-right">
+        <a class="submit-bug" href="https://github.com/sivareddyuppathi/vue-border" target="_blank">
+          GITHUB
+        </a>
+        <a class="submit-bug" href="https://github.com/sivareddyuppathi/vue-border/issues/new" target="_blank">
+          SUBMIT A BUG
+        </a>
       </div>
     </div>
+    <div class="card" :style="{ '--elevation': '2' }">
+      <BorderWrapper :borderColor="state.color" :borderWidth="state.borderWidth + 'px'"
+        :borderRadius="state.borderRadius + 'px'" :innerPadding="state.innerPadding + 'px'"
+        :borderType="state.borderType" :topPosition="state.topPosition" :topOffset="state.topOffset + 'px'"
+        :rightPosition="state.rightPosition" :rightOffset="state.rightOffset + 'px'"
+        :bottomPosition="state.bottomPosition" :bottomOffset="state.bottomOffset + 'px'"
+        :leftPosition="state.leftPosition" :leftOffset="state.leftOffset + 'px'">
+        <template v-if="topEle" #topElement>
+          <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px' }">
+            <img :style="{ width: '200px' }" src="./assets/vue_wrp_6.PNG" alt="vue border wrapper logo" />
+          </div>
+        </template>
+        <template v-if="rightEle" #rightElement>
+          <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-end' }">
+            <img :style="{ height: '50px' }"
+              src="./assets/react_border_wrapper_icon.png"
+              alt="vue border wrapper logo" />
+          </div>
+        </template>
+        <template v-if="leftEle" #leftElement>
+          <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-start', }">
+            <img :style="{ height: '50px' }"
+              src="./assets/react_border_wrapper_icon.png"
+              alt="vue border wrapper logo" />
+          </div>
+        </template>
+        <template v-if="bottomEle" #bottomElement>
+          <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px', alignSelf: 'flex-end' }">
+            <img :style="{ width: '200px' }" src="./assets/vue_wrp_6.PNG" alt="vue border wrapper logo" />
+          </div>
+        </template>
+        <template #default>
+          <SmallContent v-if="contentType === 'small'" />
+          <MediumContent v-if="contentType === 'medium'" />
+          <LargeContent v-if="contentType === 'large'" />
+        </template>
+      </BorderWrapper>
 
-    <div class="separator">Check the component code below</div>
+      <div class="separator">Check the component by changing the below props</div>
 
-    <div style="
+      <div class="container">
+        <div class="did-floating-label-content">
+          <select class="did-floating-select" v-model="contentType">
+            <option v-for="(type) in contentTypes" :key="type.id" :value="type.id">{{ type.name }}</option>
+          </select>
+          <label class="did-floating-label">Content Size</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.color">
+          <label class="did-floating-label">Color</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.borderWidth">
+          <span class="did-floating-label-right-content">
+            px
+          </span>
+          <label class="did-floating-label">Border Width</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.innerPadding">
+          <span class="did-floating-label-right-content">
+            px
+          </span>
+          <label class="did-floating-label">Inner Padding</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.borderRadius">
+          <span class="did-floating-label-right-content">
+            px
+          </span>
+          <label class="did-floating-label">Border Radius</label>
+        </div>
+        <div class="did-floating-label-content">
+          <select class="did-floating-select" v-model="state.borderType">
+            <option v-for="(type) in borderTypes" :key="type.id" :value="type.id">{{ type.name }}</option>
+          </select>
+          <label class="did-floating-label">Border Type</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.topPosition">
+          <span class="did-floating-label-right-content">
+            %
+          </span>
+          <label class="did-floating-label">Top Position</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.rightPosition">
+          <span class="did-floating-label-right-content">
+            %
+          </span>
+          <label class="did-floating-label">Right Position</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.bottomPosition">
+          <span class="did-floating-label-right-content">
+            %
+          </span>
+          <label class="did-floating-label">Bottom Position</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.leftPosition">
+          <span class="did-floating-label-right-content">
+            %
+          </span>
+          <label class="did-floating-label">Left Position</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.topOffset">
+          <span class="did-floating-label-right-content">
+            px
+          </span>
+          <label class="did-floating-label">Top Offset</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.rightOffset">
+          <span class="did-floating-label-right-content">
+            px
+          </span>
+          <label class="did-floating-label">Right Offset</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.bottomOffset">
+          <span class="did-floating-label-right-content">
+            px
+          </span>
+          <label class="did-floating-label">Bottom Offset</label>
+        </div>
+        <div class="did-floating-label-content">
+          <input class="did-floating-input" type="text" v-model="state.leftOffset">
+          <span class="did-floating-label-right-content">
+            px
+          </span>
+          <label class="did-floating-label">Left Offset</label>
+        </div>
+      </div>
+
+      <div class="separator">Check the component by changing the below Slots</div>
+      <div class="container">
+        <div class="did-floating-label-content">
+          <select class="did-floating-select" v-model="topEle">
+            <option :value="true">True</option>
+            <option :value="false">False</option>
+          </select>
+          <label class="did-floating-label">Top Element</label>
+        </div>
+        <div class="did-floating-label-content">
+          <select class="did-floating-select" v-model="rightEle">
+            <option :value="true">True</option>
+            <option :value="false">False</option>
+          </select>
+          <label class="did-floating-label">Right Element</label>
+        </div>
+        <div class="did-floating-label-content">
+          <select class="did-floating-select" v-model="bottomEle">
+            <option :value="true">True</option>
+            <option :value="false">False</option>
+          </select>
+          <label class="did-floating-label">Bottom Element</label>
+        </div>
+        <div class="did-floating-label-content">
+          <select class="did-floating-select" v-model="leftEle">
+            <option :value="true">True</option>
+            <option :value="false">False</option>
+          </select>
+          <label class="did-floating-label">Left Element</label>
+        </div>
+      </div>
+
+      <div class="separator">Check the component code below</div>
+
+      <div style="
     display: flex;
     align-items: start;
     justify-content: center;
 ">
-      <code style="
+        <code style="
     text-align: start;
 ">
     {{ `
@@ -250,7 +255,11 @@ const leftEle = ref(true)
     <template v-if="topEle">
     <pre>
       {{ `<template #topElement>
-          <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px' }">
+          <div :style="{ 
+            width: '200px', 
+            paddingLeft: '4px', 
+            paddingRight: '4px' }"
+          >
             <img :style="{ width: '200px' }" 
               src="./assets/react_border_wrapper_logo.png"
               alt="vue border wrapper logo" />
@@ -262,9 +271,13 @@ const leftEle = ref(true)
     <template v-if="rightEle">
       <pre>
         {{ `<template #rightElement>
-          <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-end' }">
+          <div :style="{ height: '50px', 
+            paddingTop: '4px', 
+            paddingBottom: '4px', 
+            alignSelf: 'flex-end' }"
+          >
             <img :style="{ height: '50px' }" 
-              src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
+              src="./assets/react_border_wrapper_icon.png"
               alt="vue border wrapper logo" />
           </div>
       </template>`}}
@@ -273,9 +286,14 @@ const leftEle = ref(true)
     <template v-if="bottomEle">
       <pre>
         {{ `<template #bottomElement>
-        <div :style="{ width: '200px', paddingLeft: '4px', paddingRight: '4px', alignSelf: 'flex-end' }">
+        <div :style="{ width: '200px', 
+          paddingLeft: '4px', 
+          paddingRight: '4px', 
+          alignSelf: 'flex-end' }"
+        >
           <img :style="{ width: '200px' }" 
-            src="./assets/react_border_wrapper_logo.png" alt="vue border wrapper logo" />
+            src="./assets/react_border_wrapper_logo.png" 
+            alt="vue border wrapper logo" />
         </div>
       </template>`}}
     </pre>
@@ -283,9 +301,13 @@ const leftEle = ref(true)
     <template v-if="leftEle">
       <pre>
         {{ `<template #leftElement>
-        <div :style="{ height: '50px', paddingTop: '4px', paddingBottom: '4px', alignSelf: 'flex-start', }">
+        <div :style="{ height: '50px', 
+          paddingTop: '4px', 
+          paddingBottom: '4px', 
+          alignSelf: 'flex-start', }"
+        >
           <img :style="{ height: '50px' }"
-            src="https://metroxe.github.io/react-border-wrapper/react_border_wrapper_icon.png"
+            src="./assets/react_border_wrapper_icon.png"
             alt="vue border wrapper logo" />
         </div>
       </template>`}}
@@ -293,11 +315,32 @@ const leftEle = ref(true)
     </template>
     {{ `</BorderWrapper>` }}
   </code>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.header-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.submit-bug {
+  color: white;
+  text-decoration: none;
+}
+
+.header-wrapper {
+  background-color: rgb(0, 0, 0);
+  column-gap: 13px;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: space-between;
+  padding: 10px;
+}
+
 .separator {
   display: flex;
   align-items: center;
@@ -320,7 +363,9 @@ const leftEle = ref(true)
 .separator:not(:empty)::after {
   margin-left: .25em;
 }
+
 .card {
+  padding: 2rem 0rem;
   text-align: center;
   border-radius: 4px;
   --elevation: 0;
