@@ -195,6 +195,7 @@ const leftEle = ref(true)
       </div>
 
       <div class="separator">Check the component by changing the below Slots</div>
+
       <div class="container">
         <div class="did-floating-label-content">
           <select class="did-floating-select" v-model="topEle">
