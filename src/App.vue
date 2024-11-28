@@ -43,7 +43,7 @@ const bottomEle = ref(true)
 const leftEle = ref(true)
 
 </script>
-<template>
+<template> 
   <div class="">
     <div class="header-wrapper">
       <div>
